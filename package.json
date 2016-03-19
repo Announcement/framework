@@ -13,7 +13,7 @@
     "eslint-config-google": "^0.4.0"
   },
   "scripts": {
-    "build": "lsc -bco . src"
+    "build": "lsc -bco . src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
