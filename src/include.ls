@@ -64,9 +64,13 @@ function clean {array, errors}
 
 function include ...array # takes standard or listened arguments
 	cwd = pwd
+	shortenable = no
 
 	if identify-type-of(array.0) is 'object' then
 		cwd := array.shift!dir
+
+	unless identify-type-of(array.0) is 'array' then
+		shortenable := yes
 
 	array = flatten [array] # normalize the input
 	errors = []
@@ -138,7 +142,7 @@ function include ...array # takes standard or listened arguments
 
 	throw error if errors.length > 0
 
-	list = [..bin for array]
-	return list if list.length is 1 then list.0 else list
+	bin-array = [..bin for array]
+	if bin-array.length is 1 and shortenable then bin-array.0 else bin-array
 
 module.exports = include
