@@ -6,6 +6,14 @@ Javascript utilities toolbelt
 1. [livescript](http://livescript.net/) to compile [^1]
 
 [1]: You can also compile online or acquire a precompiled package from the community.
+# Build instructions
+```bash
+# easy
+npm build
+
+# customizable
+lsc -bco . src
+```
 # include.ls
 
 ```livescript
