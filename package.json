@@ -1,0 +1,39 @@
+{
+  "name": "framework",
+  "version": "1.0.0",
+  "description": "Javascript utilities toolbelt",
+  "main": "exp.js",
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "prelude-ls": "^1.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^2.4.0",
+    "eslint-config-eslint": "^3.0.0",
+    "eslint-config-google": "^0.4.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Announcement/framework.git"
+  },
+  "author": "Jacob Francis Powers",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Announcement/framework/issues"
+  },
+  "homepage": "https://github.com/Announcement/framework#readme",
+  "keywords": [
+    "javascript",
+    "bootstrap",
+    "utility",
+    "livescript",
+    "include",
+    "require",
+    "options",
+    "parameters",
+    "arguments"
+  ]
+}
