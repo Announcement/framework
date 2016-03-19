@@ -138,6 +138,7 @@ function include ...array # takes standard or listened arguments
 
 	throw error if errors.length > 0
 
-	[..bin for array]
+	list = [..bin for array]
+	return list if list.length is 1 then list.0 else list
 
 module.exports = include
