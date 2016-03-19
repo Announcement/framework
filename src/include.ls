@@ -125,7 +125,6 @@ function include ...array # takes standard or listened arguments
 
 	array .= map ->
 		try
-			console.log it.name
 			it <<< {bin: require(it.name)}
 		catch error
 			{error}
