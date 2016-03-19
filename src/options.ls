@@ -1,6 +1,6 @@
 require! <[path chalk]>
 
-[transform] = include <[transform]>
+[transform] = include {dir: __dirname} <[transform]>
 
 flatten = transform.flatten
 
