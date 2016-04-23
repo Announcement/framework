@@ -4,15 +4,16 @@
 
 #> equivalent to include + include 2
 
-{flatten} = require 'prelude-ls'
+global import require \prelude-ls
 
 require! <[fs path chalk]>
 
 const folders = /[\/\\]+/g
 const pwd = path.parse process.argv.1 .dir
+modules = {}
 
 do function initialize
-	global.modules = {} unless global.modules?
+	modules := {} unless modules?
 
 identify-type-of = (item) ->
 	return typeof item unless typeof item is \object
@@ -20,7 +21,7 @@ identify-type-of = (item) ->
 
 deflate = (point, data, copy?) -> # ripped directly from include1
 	unless copy? then
-		copy = global.modules
+		copy = modules
 
 	if typeof point is \string and not point.match folders then
 		point = [point]
@@ -62,7 +63,7 @@ function clean {array, errors}
 		array: without-errors array
 	}
 
-function include ...array # takes standard or listened arguments
+function parser ...array # takes standard or listened arguments
 	cwd = pwd
 	shortenable = no
 
@@ -131,17 +132,47 @@ function include ...array # takes standard or listened arguments
 
 	{errors, array} = clean {errors, array}
 
-	object = {[..original, ..bin] for array}
+	object = {[camelize(..original), ..bin] for array}
 	unflatten object
 
 	errors.for-each ->
 		console.log chalk.red('Error'), it
 
+	function multiple
+		it.length > 0
+
+	function single
+		it.length is 1
+
+	function swap x, y, z
+		(x / y * z)
+
+	function less x, y, z
+		y - x and (z or y)
+
+	"Th!w!issues involving "+errors.length|>->"#{less it ||'a'} module#{'s' if --i}?."
 	error = "There were issues including " + if errors.length > 1 then "#{errors.length} modules." else "a module."
 
 	throw error if errors.length > 0
 
 	bin-array = [..bin for array]
-	if bin-array.length is 1 and shortenable then bin-array.0 else bin-array
 
-module.exports = include
+	# if bin-array.length is 1 and shortenable then bin-array.0 else bin-array
+	if bin-array.length is 1 then bin-array.0 else bin-array
+
+function include
+	return parser ... if arguments.length > 0
+	wrapper = (...array) ->
+		parser ...
+		global <<< modules
+		modules
+
+include {dir: __dirname}, \options
+
+import modules
+export include
+
+# export options
+# module.exports = include
+# include.prototype.options = require './options'
+# global.include = module.exports = include

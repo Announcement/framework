@@ -1,8 +1,6 @@
 require! <[path chalk]>
 
-[transform] = include {dir: __dirname} <[transform]>
-
-flatten = transform.flatten
+{flatten} = require 'prelude-ls'
 
 class Command
 	argv = []
@@ -10,7 +8,7 @@ class Command
 	regex =
 		long: /^\-{2}(\w[\w-]+)$/m
 		short: /^\-(\w+)$/m
-		indexed: /^(?:-(\w+)|--(\w[\w-]+))\=(.+)/
+		indexed: /^(?:-(\w+)|--(\w[\w-]*))\=(.+)/
 
 	regextras =
 		no: /^no\-/

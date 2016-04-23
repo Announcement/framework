@@ -2,7 +2,7 @@
   "name": "framework",
   "version": "1.0.0",
   "description": "Javascript utilities toolbelt",
-  "main": "exp.js",
+  "main": "include.js",
   "dependencies": {
     "chalk": "^1.1.1",
     "prelude-ls": "^1.1.2"
@@ -13,7 +13,7 @@
     "eslint-config-google": "^0.4.0"
   },
   "scripts": {
-    "build": "lsc -bco . src",
+    "install": "lsc -bco . src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
